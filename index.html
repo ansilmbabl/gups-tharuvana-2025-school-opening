@@ -1,2 +1,34 @@
-<html>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Poster Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Create Your Colorful Poster</h1>
+    <form id="posterForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="button" id="generateButton">Generate Poster</button>
+    </form>
+
+    <div id="modal">
+        <div id="modalContent">
+            <button id="closeModal">X</button>
+            <img id="cropImage" src="">
+            <button id="cropButton">Crop Image</button>
+        </div>
+    </div>
+
+    <canvas id="canvas" width="1865" height="3264"></canvas>
+    <button id="downloadBtn">Download Poster</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
