@@ -17,6 +17,8 @@
         const defaultImg = new Image();
         defaultImg.onload = function () {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ffffff';   
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(defaultImg, 0, 0, canvas.width, canvas.height);
         };
         defaultImg.src = defaultImageSrc;
@@ -50,6 +52,13 @@
                     aspectRatio: NaN,
                     responsive: true,
                     restore: true,
+                    ready() {
+                        // Set crop box to 600x700
+                        cropper.setCropBoxData({
+                            width: 500,
+                            height: 600,
+                        });
+                    },
                 });
             };
             reader.readAsDataURL(file);
@@ -67,7 +76,7 @@
     });
 
     function fitTextToRectangle(ctx, text, maxWidth, maxHeight) {
-        let fontSize = 48;
+        let fontSize = 90;
         ctx.font = `bold ${fontSize}px sans-serif`;
         let textWidth = ctx.measureText(text).width;
         let textHeight = fontSize;
@@ -88,13 +97,22 @@
                 const defaultImg = new Image();
                 defaultImg.onload = function () {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(croppedImage, 396, 1749, 750, 750);
+
+                    // Create vertical gradient from top (y=0) to bottom (y=canvas.height)
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    gradient.addColorStop(0, '#f5be00'); // Left side
+                    gradient.addColorStop(1, '#d19d17'); // Right side
+
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.drawImage(croppedImage, 1290, 1480, 500, 600);
                     ctx.drawImage(defaultImg, 0, 0, canvas.width, canvas.height);
 
-                    const rectX = 385;
-                    const rectY = 2580;
-                    const rectWidth = 765;
-                    const rectHeight = 115;
+                    const rectX = 70;
+                    const rectY = 1840;
+                    const rectWidth = 1142;
+                    const rectHeight = 170;
                     const fontSize = fitTextToRectangle(ctx, name, rectWidth, rectHeight);
                     ctx.font = `bold ${fontSize}px sans-serif`;
                     ctx.fillStyle = '#000000';
