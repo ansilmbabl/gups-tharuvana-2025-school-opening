@@ -9,7 +9,7 @@
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const downloadBtn = document.getElementById('downloadBtn');
-    const defaultImageSrc = './default-poster-background.png';
+    const defaultImageSrc = './default.PNG';
     let cropper;
     let croppedImageDataURL;
 
